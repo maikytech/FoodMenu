@@ -8,13 +8,43 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    //Variables
+    let foodImages:[String] = ["Burguer", "HotDogs", "Pizza", "RoastBeef"]
+    
+    //Outlets
+    @IBOutlet weak var foodMenuCollectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        foodMenuCollectionView.delegate = self
+        foodMenuCollectionView.dataSource = self
     }
-
+    
+    //System functions
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! menuCollectionViewCell
+        
+        cell.foodImage.image = UIImage(named: foodImages[indexPath.row])
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return foodImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let screenSize = UIScreen.main.bounds
+        
+        return CGSize(width: screenSize.width * 0.98, height: 220)
+    }
 
 }
 
