@@ -28,7 +28,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! menuCollectionViewCell
-        
+        cell.layer.cornerRadius = 10
         cell.foodImage.image = UIImage(named: foodImages[indexPath.row])
         
         return cell
@@ -43,7 +43,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let screenSize = UIScreen.main.bounds
         
-        return CGSize(width: screenSize.width * 0.98, height: 220)
+        return CGSize(width: screenSize.width * 0.94, height: 220)
+    }
+    
+    
+    //Inset images
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 
 }
