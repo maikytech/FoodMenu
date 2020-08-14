@@ -30,6 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! menuCollectionViewCell
         cell.layer.cornerRadius = 10
         cell.foodImage.image = UIImage(named: foodImages[indexPath.row])
+        cell .foodLabel.text = foodImages[indexPath.row]
         
         return cell
     }
